@@ -18,7 +18,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 
 namespace Codebelt.Website
@@ -46,14 +45,8 @@ namespace Codebelt.Website
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-            }
+            app.UseHsts();
+            app.UseHttpsRedirection();
 
             app.UseThrottlingSentinel(o =>
             {
