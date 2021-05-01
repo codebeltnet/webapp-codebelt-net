@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Codebelt - @ViewData["Title"]</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="application-name" content="Codebelt for .NET" />
+    <meta name="description" content="A website that gathers different ingenious tools and libraries based on the .NET platform by Microsoft - for your ever growing tool belt of code; code belt.">
+    <meta name="author" content="Michael Mortensen">
+    <app-link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <app-link rel="mask-icon" href="mask-icon.svg" type="image/svg+xml" color="#000000" />
+    <app-link rel="apple-touch-icon" href="apple-touch-icon.png" type="image/png" />
+    <app-link rel="manifest" href="manifest.json" type="application/json" />
+    <cdn-link href="packages/fontawesome/5.15.3/css/all.css" />
+    <cdn-link href="packages/bootstrap/4.6.0/css/bootstrap.min.css" />
+    
+    <app-link href="css/site.css" />
+</head>
+<body>
+    <div class="body-wrap">
+        <header class="site-header">
+            <div class="container">
+                <div class="site-header-inner">
+                    <div class="brand header-brand">
+                        <app-img class="header-logo-image" src="favicon.svg" alt="Logo" />
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        @RenderBody()
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="site-footer-inner">
+                    <div class="footer-copyright">© 2021 Geekle. All rights reserved.</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <cdn-script src="packages/fontawesome/5.15.3/js/all.js" defer="true"></cdn-script>
+    <cdn-script src="packages/jquery/3.6.0/jquery.min.js"></cdn-script>
+    <cdn-script src="packages/bootstrap/4.6.0/js/bootstrap.min.js"></cdn-script>
+    <app-script src="js/main.min.js"></app-script>
+</body>
+</html>

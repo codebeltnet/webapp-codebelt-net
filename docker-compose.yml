@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  codebelt.website:
+    image: ${DOCKER_REGISTRY-}codebeltwebsite
+    build:
+      context: .
+      dockerfile: Codebelt.Website/Dockerfile
+  codebelt.static:
+    image: codebeltnet/web-cdn-origin:1.1.4
+    ports:
+      - "8000:80"
+    volumes:
+      - ./Codebelt.Website/cdnroot:/cdnroot

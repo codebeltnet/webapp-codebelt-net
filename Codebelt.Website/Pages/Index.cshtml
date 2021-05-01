@@ -1,0 +1,109 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Tools and libraries for .NET and Docker";
+}
+
+<main>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Codebelt - for .NET and Docker</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    This website will provide different tools and libraries based on .NET and Docker.
+                    <p />
+                    <p />
+                    Each tool and library is designed to have a well defined role embracing the principle of separation of concerns (SoC) and follow industry standards / best practices.
+                    <p />
+                    <p />
+                    When applicable, tools and libraries are distributed either as Docker images or NuGet packages.
+                    <p />
+                    <p />
+                    Codebelt is a free, cross-platform, open source project tailored to add to your ever growing tool belt of code.
+                    <p />
+                    <p />
+                    Sharing is caring.
+                </div>
+                <div class="col-md-5">
+                    <app-img src="img/factory.svg" alt="Factory" class="svg-size-auto-from-width" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-sm-4">
+                        <app-img src="img/github.svg" alt="Github" class="svg-size-repo" />
+                    </div>
+                    <div class="col-sm-4">
+                        <app-img src="img/docker.svg" alt="Docker" class="svg-size-repo" />
+                    </div>
+                    <div class="col-sm-4">
+                        <app-img src="img/nuget.svg" alt="NuGet" class="svg-size-repo" />
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-sm-4">
+                        <h3>Github</h3>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Docker</h3>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>NuGet</h3>
+                    </div>
+                </div>
+                <div class="row row-feature row-feature-odd">
+                    <div class="col-md-4">
+                        <div class="feature-content">
+                            <a href="https://github.com/codebeltnet/web-cdn-origin">web-cdn-origin</a>
+                            <p />
+                            <p />
+                            An <b>ASP.NET Core</b> project that has an assigned role of being a CDN / CDN origin / static content provider.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-content">
+                            <a href="https://hub.docker.com/r/codebeltnet/web-cdn-origin">codebeltnet/web-cdn-origin:1.1.4</a>
+                            <p />
+                            <p />
+                            A docker image based on ASP.NET Core Runtime 5.0-alpine that has the role of being a CDN / CDN origin / static content provider.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-content">
+                            Not applicable.
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-feature row-feature-even">
+                    <div class="col-md-4">
+                        <div class="feature-content">
+                            <a href="https://github.com/codebeltnet/webapp-codebelt-net">webapp-codebelt-net</a>
+                            <p />
+                            <p />
+                            An <b>ASP.NET Core Web App</b> project that has the role of being the website you are currently browsing.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-content">
+                            Not applicable.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-content">
+                            Not applicable.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

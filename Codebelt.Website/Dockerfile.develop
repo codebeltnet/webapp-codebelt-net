@@ -1,0 +1,18 @@
+FROM mcr.microsoft.com/dotnet/sdk:5.0
+ARG BUILD_CONFIGURATION=Debug
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV ASPNETCORE_URLS=http://+:80
+ENV DOTNET_USE_POLLING_FILE_WATCHER=true
+EXPOSE 80
+
+WORKDIR /src
+COPY ["Codebelt.Website/Codebelt.Website.csproj", "Codebelt.Website/"]
+
+RUN dotnet restore "Codebelt.Website/Codebelt.Website.csproj"
+COPY . .
+WORKDIR "/src/Codebelt.Website"
+RUN dotnet build --no-restore "Codebelt.Website.csproj" -c $BUILD_CONFIGURATION
+
+RUN echo "exec dotnet run --no-build --no-launch-profile -c $BUILD_CONFIGURATION --" > /entrypoint.sh
+
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
