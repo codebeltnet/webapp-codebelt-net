@@ -4,10 +4,11 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS build
 WORKDIR /src
 
-COPY ["Codebelt.Website.csproj", "Codebelt.Website/"]
+COPY ["src/Codebelt.Website/Codebelt.Website.csproj", "Codebelt.Website/"]
+COPY ["NuGet.config", "Codebelt.Website/"]
 RUN dotnet restore "Codebelt.Website/Codebelt.Website.csproj"
 
-COPY [".", "Codebelt.Website/"]
+COPY ["src/Codebelt.Website/.", "Codebelt.Website/"]
 
 WORKDIR "/src/Codebelt.Website"
 RUN dotnet build "Codebelt.Website.csproj" -c Release -o /app/build

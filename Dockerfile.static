@@ -1,6 +1,6 @@
 FROM codebeltnet/web-cdn-origin:1.1.5
 
 WORKDIR /cdnroot
-ADD cdnroot .
+ADD src/cdnroot .
 
 WORKDIR /app

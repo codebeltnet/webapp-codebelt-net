@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Codebelt.Website.TagHelpers;
 using Cuemon.AspNetCore.Diagnostics;
@@ -54,6 +53,8 @@ namespace Codebelt.Website
                 o.Quota = new ThrottleQuota(3600, TimeSpan.FromHours(1));
             });
 
+            app.UseServerTiming();
+
             app.Use((context, next) =>
             {
                 var serverTiming = context.RequestServices.GetRequiredService<IServerTiming>();
@@ -77,18 +78,15 @@ namespace Codebelt.Website
                         if (statusCodeBeforeBodyRead == StatusCodes.Status304NotModified) { context.Response.StatusCode = statusCodeBeforeBodyRead; }
                         var builder = new ChecksumBuilder(ms.ToArray(), () => UnkeyedHashFactory.CreateCryptoMd5());
                         context.Response.AddOrUpdateEntityTagHeader(context.Request, builder);
-                        
                     });
 
                     serverTiming.AddServerTiming("razor", razorTiming.Elapsed);
                     serverTiming.AddServerTiming("dynamic-etag", dynamicCacheTiming.Elapsed);
 
-                    context.Response.Headers.Add(ServerTiming.HeaderName, serverTiming.Metrics.Select(metric => metric.ToString()).ToArray());
-                    
                     if (context.Response.StatusCode.IsSuccessStatusCode()) { ms.CopyToAsync(body).GetAwaiter().GetResult(); }
 
                     return Task.CompletedTask;
-                };
+                }
             });
 
             app.UseRouting();

@@ -6,10 +6,11 @@ ENV DOTNET_USE_POLLING_FILE_WATCHER=true
 EXPOSE 80
 
 WORKDIR /src
-COPY ["Codebelt.Website/Codebelt.Website.csproj", "Codebelt.Website/"]
+COPY ["src/Codebelt.Website/Codebelt.Website.csproj", "Codebelt.Website/"]
+COPY ["NuGet.config", "Codebelt.Website/"]
 
 RUN dotnet restore "Codebelt.Website/Codebelt.Website.csproj"
-COPY . .
+COPY src/. .
 WORKDIR "/src/Codebelt.Website"
 RUN dotnet build --no-restore "Codebelt.Website.csproj" -c $BUILD_CONFIGURATION
 
