@@ -64,7 +64,7 @@ namespace Codebelt.Website
                     MustRevalidate = true,
                     NoTransform = true
                 };
-                context.Response.Headers[HeaderNames.Expires] = DateTime.UtcNow.Add(TimeSpan.FromHours(12)).ToString("R");
+                context.Response.Headers[HeaderNames.Expires] = DateTime.UtcNow.Add(TimeSpan.FromDays(21)).ToString("R"); // revalidate is on
                 using (var ms = new MemoryStream())
                 {
                     var body = context.Response.Body;
