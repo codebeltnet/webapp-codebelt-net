@@ -11,4 +11,4 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ./src/Codebelt.Website/cdnroot:/cdnroot
+      - ./cdnroot:/cdnroot

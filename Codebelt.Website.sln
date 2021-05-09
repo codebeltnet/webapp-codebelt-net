@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebelt.Website", "src\Codebelt.Website\Codebelt.Website.csproj", "{CCF8A296-FE0C-4BDF-BAE0-D2833E0FD156}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{ADECDF86-3F51-4930-8F9F-246AEA4A02C7}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "src\Codebelt.Website\docker-compose.dcproj", "{ADECDF86-3F51-4930-8F9F-246AEA4A02C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

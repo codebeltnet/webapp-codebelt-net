@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cuemon.AspNetCore.Razor.TagHelpers" Version="6.0.0" />
-    <PackageReference Include="Cuemon.Core.App" Version="6.0.1-preview.4" />
-    <PackageReference Include="Cuemon.Extensions.AspNetCore" Version="6.0.1-preview.4" />
+    <PackageReference Include="Cuemon.AspNetCore.Razor.TagHelpers" Version="6.0.1" />
+    <PackageReference Include="Cuemon.Core.App" Version="6.0.1" />
+    <PackageReference Include="Cuemon.Extensions.AspNetCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
   </ItemGroup>
