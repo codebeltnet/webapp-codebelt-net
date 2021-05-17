@@ -4,11 +4,11 @@ services:
   codebelt.website:
     image: ${DOCKER_REGISTRY-}codebeltwebsite
     build:
-      context: .
+      context: src/Codebelt.Website/.
       dockerfile: Dockerfile
   codebelt.static:
     image: codebeltnet/web-cdn-origin:1.1.5
     ports:
       - "8000:80"
     volumes:
-      - ./cdnroot:/cdnroot
+      - ./src/Codebelt.Website/cdnroot:/cdnroot
