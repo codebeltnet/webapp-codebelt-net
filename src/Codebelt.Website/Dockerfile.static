@@ -1,4 +1,4 @@
-FROM codebeltnet/web-cdn-origin:1.1.5
+FROM codebeltnet/web-cdn-origin:1.2.0
 
 WORKDIR /cdnroot
 ADD cdnroot .
