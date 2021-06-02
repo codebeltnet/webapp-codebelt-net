@@ -18,7 +18,7 @@
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       },
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
-        "publishAllPorts": true
-      }
+      "publishAllPorts": true
     }
+  }
 }

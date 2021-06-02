@@ -1,22 +1,14 @@
 using System;
-using System.IO;
-using System.Threading.Tasks;
-using Cuemon.AspNetCore.Diagnostics;
 using Cuemon.AspNetCore.Http.Throttling;
 using Cuemon.AspNetCore.Razor.TagHelpers;
-using Cuemon.Data.Integrity;
-using Cuemon.Diagnostics;
 using Cuemon.Extensions.AspNetCore.Configuration;
 using Cuemon.Extensions.AspNetCore.Diagnostics;
-using Cuemon.Extensions.AspNetCore.Http;
+using Cuemon.Extensions.AspNetCore.Http.Headers;
 using Cuemon.Extensions.AspNetCore.Http.Throttling;
-using Cuemon.Security.Cryptography;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Net.Http.Headers;
 
 namespace Codebelt.Website
 {
@@ -35,6 +27,7 @@ namespace Codebelt.Website
             services.Configure<CdnTagHelperOptions>(Configuration.GetSection("CdnTagHelperOptions:0"));
             services.Configure<AppTagHelperOptions>(Configuration.GetSection("CdnTagHelperOptions:1"));
             services.AddResponseCaching();
+            services.AddResponseCompression();
             services.AddAssemblyCacheBusting();
             services.AddMemoryThrottlingCache();
             services.AddServerTiming();
@@ -54,39 +47,11 @@ namespace Codebelt.Website
 
             app.UseServerTiming();
 
-            app.Use((context, next) =>
-            {
-                var serverTiming = context.RequestServices.GetRequiredService<IServerTiming>();
-                context.Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue()
-                {
-                    Public = true,
-                    MustRevalidate = true,
-                    NoTransform = true
-                };
-                context.Response.Headers[HeaderNames.Expires] = DateTime.UtcNow.Add(TimeSpan.FromDays(21)).ToString("R"); // revalidate is on
-                using (var ms = new MemoryStream())
-                {
-                    var body = context.Response.Body;
-                    var statusCodeBeforeBodyRead = context.Response.StatusCode;
-                    context.Response.Body = ms;
-                    var razorTiming = TimeMeasure.WithAction(() => next().GetAwaiter().GetResult());
-                    ms.Seek(0, SeekOrigin.Begin);
+            app.UseResponseCompression();
 
-                    var dynamicCacheTiming = TimeMeasure.WithAction(() =>
-                    {
-                        if (statusCodeBeforeBodyRead == StatusCodes.Status304NotModified) { context.Response.StatusCode = statusCodeBeforeBodyRead; }
-                        var builder = new ChecksumBuilder(ms.ToArray(), () => UnkeyedHashFactory.CreateCryptoMd5());
-                        context.Response.AddOrUpdateEntityTagHeader(context.Request, builder);
-                    });
+            app.UseResponseCaching();
 
-                    serverTiming.AddServerTiming("razor", razorTiming.Elapsed);
-                    serverTiming.AddServerTiming("dynamic-etag", dynamicCacheTiming.Elapsed);
-
-                    if (context.Response.StatusCode.IsSuccessStatusCode()) { ms.CopyToAsync(body).GetAwaiter().GetResult(); }
-
-                    return Task.CompletedTask;
-                }
-            });
+            app.UseCacheControl(o => o.Validators.Add(new EntityTagCacheableValidator()));
 
             app.UseRouting();
 
