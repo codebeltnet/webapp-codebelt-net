@@ -1,11 +1,11 @@
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 WORKDIR /src
 
 COPY ["Codebelt.Website.csproj", "Codebelt.Website/"]
-RUN dotnet restore "Codebelt.Website/Codebelt.Website.csproj" -s https://nuget.cuemon.net/v3/index.json -s https://api.nuget.org/v3/index.json
+RUN dotnet restore "Codebelt.Website/Codebelt.Website.csproj"
 
 COPY [".", "Codebelt.Website/"]
 

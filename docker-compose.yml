@@ -7,7 +7,7 @@ services:
       context: src/Codebelt.Website/.
       dockerfile: Dockerfile
   codebelt.static:
-    image: codebeltnet/web-cdn-origin:1.2.0
+    image: codebeltnet/web-cdn-origin:1.2.1
     ports:
       - "8000:80"
     volumes:

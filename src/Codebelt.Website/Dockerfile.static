@@ -1,4 +1,6 @@
-FROM codebeltnet/web-cdn-origin:1.2.0
+FROM codebeltnet/web-cdn-origin:1.4.0
+
+ENV ASPNETCORE_HTTP_PORTS 80
 
 WORKDIR /cdnroot
 ADD cdnroot .
